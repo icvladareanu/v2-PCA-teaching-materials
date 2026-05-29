@@ -15,7 +15,7 @@ A *feature* is a measurable property or characteristic of an object. Features pr
 
 ```{admonition}  Example: a house object
 :class: dropdown
-:open: false
+:open: true
 :icon: false
 Suppose we want to buy a house. We describe the house as an object using a few numbers (features):
 
@@ -38,7 +38,7 @@ A *dataset* is a collection of objects (also called data points or samples), whe
 
 ```{admonition}  Example: a dataset of houses
 :class: dropdown
-:open: false
+:open: true
 :icon: false
 Consider a dataset of three houses described by three features:
 
@@ -51,34 +51,56 @@ Consider a dataset of three houses described by three features:
 Each row represents one house (a specific object or data point), and each column represents a specific feature.
 ```
 
-### Dimensionality
-Each feature represents one measurable *dimension* of the data. If a dataset contains:
-- 1 feature → the data is one-dimensional
-- 2 features → the data is two-dimensional
-- 3 features → the data is three-dimensional
-- n features → the data is n-dimensional
+```{tip}  The Row vs. Column Convention
+:class: dropdown
+:open: false
+:icon: true
+Notice how the two examples above use different conventions for vector notation. This is a common difference between mathematics and Machine Learning:
 
+- **Linear Algebra (Column Convention):** In mathematical notation, a vector (also the single house **feature** vector) is conventionally written as a *column*. If an object has $d$ features, it is represented as a $d \times 1$ column vector.
+- **Machine Learning (Row Convention):** When we combine multiple objects into a single dataset matrix, the standard convention is to represent each object/vector as a *row*. Therefore, an $N \times d$ dataset matrix contains $N$ objects (rows) and $d$ features (columns).
+
+To bridge these conventions mathematically, an object $\mathbf{x}$ represented as a column vector is transposed ($\mathbf{x}^\top$) when it is inserted as a row into the dataset matrix.
+```
+
+
+### Dimensionality
+In Machine Learning, the number of features an object has dictates the number of *dimensions* of the mathematical space it occupies.
+
+To build a strong intuition for techniques like PCA, we must translate how we view data from a flat list of numbers into a geometric space. Every time you add a new feature to your dataset, you are adding a new perpendicular axis to your graph:
+
+- **1 feature (1D):** The object is a 1D vector, $x = [x_1]$. Geometrically, this is a single point on a number line, where the value of $x_1$ dictates its exact position.
+- **2 features (2D):** The object is a 2D vector, $\mathbf{x} = [x_1, x_2]^\top$. Geometrically, this represents a point in a standard XY coordinate system. The first feature value ($x_1$) provides the coordinate on the horizontal axis, and the second feature value ($x_2$) provides the coordinate on the vertical axis.
+- **3 features (3D):** The object is a 3D vector, $\mathbf{x} = [x_1, x_2, x_3]^\top$. The point now exists in a 3D volume, with three distinct coordinates dictating its position across the XYZ coordinate system.
+- **$n$ features ($n$-D):** The object is an $n$-dimensional vector. While we cannot easily visualize more than three dimensions, the mathematical logic remains identical: the point is located in an abstract $n$-dimensional space, defined by $n$ specific numerical coordinates.
 
 ```{figure} figures/dimensionality.*
 :label: fig-dimensionality
-:alt: A visual representation of one-dimensional, two-dimensional and three-dimensional datasets.
+:alt: A visual representation of how data sparsity increases from 1D (split into 4 regions) to 2D (split into 16 regions) to 3D (split into 64 regions).
 
-One-dimensional, two-dimensional and three-dimensional data.
-Source: @gleeson2017
+A visual representation of how data sparsity increases from 1D (split into 4 regions) to 2D (split into 16 regions) to 3D (split into 64 regions). This illustrates how adding features (dimensions) exponentially increases the available space, causing the number of data points in one region to become increasingly sparse.
+Source: @deepai2019
 ```
 
 (curse-of-dimensionality)=
 ### The Curse of Dimensionality
-The *curse of dimensionality* refers to the collection of problems that arise when working with high-dimensional data, where the number of features is large relative to the number of samples.
+The *curse of dimensionality* refers to the collection of problems that arise when working with high-dimensional data, when data becomes increasingly sparse as dimensions increase.
+
+To intuitively understand why high dimensions hurt machine learning models, consider the relationship between dimensions, available space, and data sparsity shown in Figure 1.
+
+Imagine we have a fixed set of 20 data points (represented by the red and green dots). Let's watch what happens to the exact same data as we add features:
+
+- In 1D (a): We only look at 1 feature. If we divide our number line into 4 distinct sub-regions, our 20 data points are packed tightly together. Every single region is crowded with data, making it very easy for a Machine Learning algorithm to see patterns and find neighbors.
+- In 2D (b): We add a second feature, expanding the line into a square grid. Because each of our 2 axes is divided into 4 regions, the total number of sub-regions jumps exponentially to $4^2 = 16$. Notice how the exact same 20 points are now scattered across a wider plane. Empty regions begin to appear.
+- In 3D (c): We add a third feature, expanding our flat grid into a 3D cube. The total space increases to $4^3 = 64$ sub-regions. Suddenly, our 20 data points look isolated. The vast majority of the 64 regions are completely empty.
 
 
+In practical terms, this creates a major bottleneck in data science and Machine Learning. High-dimensional spaces come with multiple challenges:
 
-In high-dimensional spaces:
-
-- Data is difficult to visualize;
-- The volume of the space increases so fast that the available data becomes sparse;
-- Many features may be redundant or uninformative;
-- ML models often require exponentially more data to generalize well.
+- Data is difficult to visualize: Human intuition breaks down beyond 3D.
+- Data becomes isolated: Points become so spread out that the distance between any two points becomes virtually equal, making distance-based algorithms (like clustering) fail.
+- Models overfit: With so much empty space, ML models can overfit, i.e. find random, meaningless patterns in the data that don't actually exist.
+- Higher data requirements: Accurately modeling high-dimensional data often requires exponentially more samples to achieve reliable generalization.
 
 
 
@@ -87,12 +109,13 @@ To address the curse of dimensionality, we need a way to reduce the number of fe
 
 Principal Component Analysis (PCA) achieves this by constructing a smaller set of new features that summarize the original data, allowing us to represent the same information in fewer dimensions without significant loss of information.
 
-```{figure} figures/pca-1.*
-:label: fig-pca-1
+```{figure} figures/pca-overview.*
+:label: fig-pca
 :alt: Figure of PCA
 
-Dimensionality reduction with PCA.
-Source: @vutukuri2023
+Dimensionality reduction with PCA (provided here for intuition; the method is explained in detail in later chapters).
+
+Source: @tiwari2025
 ```
 
 Before we can understand how PCA works, we first need to review some essential mathematical concepts from linear algebra and statistics. These foundations are covered in the next chapter.
