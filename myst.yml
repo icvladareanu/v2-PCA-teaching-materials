@@ -7,8 +7,7 @@ project:
 
   github: https://cristianavladareanu26.github.io/v2-PCA-teaching-materials/
   thumbnail: style/thumbnail.jpg
-  numbering: 
-    title: true
+  numbering: false
   # specify authors in authors.yml file
 
   # used to load /reuse materials from other repositories

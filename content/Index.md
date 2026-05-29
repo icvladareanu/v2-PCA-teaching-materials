@@ -26,7 +26,7 @@ It serves as an open educational resource aimed at introducing first-year Comput
 This Jupyter Book template was originally created by:  
 *Freek Pols*
 
-![](figures/tud.jpg)
+![](content-int/figures/tud.jpg)
 
 +++
 
@@ -34,7 +34,7 @@ This Jupyter Book template was originally created by:
 
 This project explores the use of Jupyter Book as a medium for structured and accessible educational content in technical subjects. It is intended as an introductory learning resource in Machine Learning, with a specific focus on Principal Component Analysis as a core dimensionality reduction technique.
 
-The tutorial adopts two different multimodal teaching approaches. The first approach - the static one - combines mathematical formulas with written explanations and analogies to support conceptual understanding. The second approach - the interactive one - combines mathematical explanations, visual intuition, and interactive elements to support visual and spatial understanding. Key ideas are introduced gradually, with an emphasis on building intuition.
+The tutorial adopts a multimodal, static teaching approach, combining mathematical formulas with written explanations and analogies, to support conceptual understanding. Key ideas are introduced gradually, with an emphasis on building intuition.
 
 No prior knowledge of Machine Learning or advanced mathematics is required.
 
