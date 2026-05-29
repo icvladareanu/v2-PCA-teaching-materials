@@ -1,0 +1,61 @@
+# $env:BASE_URL = "/starterkit"
+version: 1
+project:
+  title: A Multimodal Tutorial for Principal Component Analysis 
+  # description:
+  keywords: [Principal Component Analysis, PCA, Machine Learning, ML, Education, Multimodal, Modalities, Teaching, Learning, Computer Science, CS]
+
+  github: https://cristianavladareanu26.github.io/v2-PCA-teaching-materials/
+  thumbnail: style/thumbnail.jpg
+  numbering: 
+    title: true
+  # specify authors in authors.yml file
+
+  # used to load /reuse materials from other repositories
+  references:
+    myst-guide: https://mystmd.org/guide
+    JB-workshop: https://jupyter-book.github.io/workshop-template/
+    
+  # the following chapters are excluded from building the pdf version
+  exclude: 
+    - errorlog.md 
+    - README.md
+
+  # include a bibliography file for references in the project  
+  bibliography:
+    - references.bib
+  
+  # setup for interactivity with Thebe and Binder
+  jupyter:
+    binder:
+      repo: https://github.com/executablebooks/thebe-binder-base
+
+  plugins:
+    - https://github.com/jupyter-book/myst-plugins/releases/download/iframe-to-qr-pdf/iframe-to-qr-pdf.mjs\
+    - plugins/typst_conversion-support.mjs
+    - plugins/lightbox.mjs
+    
+
+extends:
+  - toc.yml             # includes table of contents
+  - export typst.yml    # includes export configurations
+  - authors.yml         # includes author and contributor information
+  - options.yml         # includes project-specific options and metadata
+  
+site:
+  template: book-theme
+
+  # styling options with logo's and custom css
+  options:
+    favicon:      style/favicon.ico
+    logo:         style/tudelft.png
+    logo_dark:    style/tudelft-dark.png
+    logo_url:     https://jboss.tudelft.nl
+    hide_authors: true
+    style:        style/custom.css
+  
+  # custom parts
+  parts:
+    footer:       style/footer.md
+
+# 

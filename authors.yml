@@ -1,0 +1,22 @@
+version: 1
+project:
+  
+  authors:
+    - id: student
+      name: Cristiana Vlădăreanu
+      affiliations:
+        - tud
+
+  contributors:
+    - id: responsible-professor
+      name: Gosia Migut
+      affiliations:
+        - tud
+    - id: supervisor
+      name: Ilinca Rențea
+      affiliations:
+        - tud
+   
+  affiliations:
+    - id: tud
+      institution: Delft University of Technology

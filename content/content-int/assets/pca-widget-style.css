@@ -1,0 +1,113 @@
+.pca-container {
+  width: 700px;
+  height: 500px; 
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f7f9fb 0%, #eef2f6 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   GRAPH AREA
+   ========================= */
+.views-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.scene-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-container:first-child {
+  border-right: 1px solid rgba(0,0,0,0.08);
+}
+
+.scene-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* labels */
+.scene-container:first-child::before {
+  content: "Original Data";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,1.0);
+}
+
+.scene-container:last-child::before {
+  content: "Transformed Data";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,1.0);
+}
+
+/* =========================
+   CONTROL BAR (BOTTOM)
+   ========================= */
+.pca-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 12px;
+  background: rgba(255,255,255,0.95);
+  border-top: 1px solid rgba(0,0,0,0.08);
+
+  font-family: system-ui, sans-serif;
+}
+
+/* input group */
+.pca-controls div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+/* input */
+.pca-controls input {
+  width: 60px;
+  padding: 5px 6px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+
+/* buttons */
+.pca-controls button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  background: white;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.pca-controls button:hover:not([disabled]) {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+.pca-controls button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

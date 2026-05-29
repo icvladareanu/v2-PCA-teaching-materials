@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive PCA Explorer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: sans-serif; }
+        #controls { position: absolute; top: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button { padding: 10px; cursor: pointer; background: #fff; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; color: #333; transition: 0.2s; }
+        button:hover:not([disabled]) { background: #e9ecef; border-color: #adb5bd; }
+        button[disabled] { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button onclick="generateData()">Generate Random Dataset</button>
+        <button id="btn-center" onclick="centerData()">1. Center Data</button>
+        <button id="btn-eigen" onclick="findEigenvectors()" disabled>2. Find Eigenvectors</button>
+        <button id="btn-pcs" onclick="highlightPCs()" disabled>3. Find PCs</button>
+        <button id="btn-project" onclick="projectData()" disabled>4. Project Data</button>
+    </div>
+
+    <script>
+        // --- 1. SCENE SETUP ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf4f6f8);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        camera.position.set(8, 6, 8);
+        camera.lookAt(0, 0, 0);
+
+        // Add coordinate axes for visual reference
+        const axesHelper = new THREE.AxesHelper(3);
+        scene.add(axesHelper);
+
+        let points = [];
+        let mathematicalPoints = []; // Stores current coordinates for math
+        const pointCount = 150;
+        const pointGeometry = new THREE.SphereGeometry(0.08);
+        const pointMaterial = new THREE.MeshBasicMaterial({ color: 0x6a8ba4 });
+        const pointGroup = new THREE.Group();
+        scene.add(pointGroup);
+
+        let arrows = [];
+        let principalComponents = []; // Will store {val: eigenvalue, vec: eigenvector}
+
+        // --- 2. DATA GENERATION ---
+        function generateData() {
+            pointGroup.clear();
+            arrows.forEach(a => scene.remove(a));
+            arrows = [];
+            points = [];
+            mathematicalPoints = [];
+            
+            document.getElementById('btn-center').disabled = false;
+            document.getElementById('btn-eigen').disabled = true;
+            document.getElementById('btn-pcs').disabled = true;
+            document.getElementById('btn-project').disabled = true;
+
+            // Create a cloud with variance highest in one specific random direction
+            const rotX = Math.random() * Math.PI;
+            const rotY = Math.random() * Math.PI;
+
+            for (let i = 0; i < pointCount; i++) {
+                const mesh = new THREE.Mesh(pointGeometry, pointMaterial);
+                
+                // Base spread
+                let x = (Math.random() - 0.5) * 6; // High variance
+                let y = (Math.random() - 0.5) * 2; // Medium variance
+                let z = (Math.random() - 0.5) * 0.5; // Low variance
+
+                // Rotate to make it look scattered
+                let vec = new THREE.Vector3(x, y, z);
+                vec.applyAxisAngle(new THREE.Vector3(1, 0, 0), rotX);
+                vec.applyAxisAngle(new THREE.Vector3(0, 1, 0), rotY);
+
+                // Shift away from origin
+                vec.x += 3; vec.y += 2; vec.z -= 2;
+
+                mesh.position.copy(vec);
+                pointGroup.add(mesh);
+                points.push(mesh);
+                mathematicalPoints.push(vec.clone());
+            }
+        }
+
+        // --- 3. PCA STEP 1: MEAN CENTERING ---
+        function centerData() {
+            let mean = new THREE.Vector3(0, 0, 0);
+            mathematicalPoints.forEach(p => mean.add(p));
+            mean.divideScalar(pointCount);
+
+            points.forEach((p, index) => {
+                let centeredVec = mathematicalPoints[index].clone().sub(mean);
+                mathematicalPoints[index].copy(centeredVec); // Update math state
+
+                gsap.to(p.position, {
+                    x: centeredVec.x,
+                    y: centeredVec.y,
+                    z: centeredVec.z,
+                    duration: 1.5,
+                    ease: "power2.inOut"
+                });
+            });
+
+            document.getElementById('btn-center').disabled = true;
+            document.getElementById('btn-eigen').disabled = false;
+        }
+
+        // --- 4. PCA STEP 2: COVARIANCE & EIGENVECTORS ---
+        function findEigenvectors() {
+            // A. Calculate 3x3 Covariance Matrix
+            let cov = [[0,0,0],[0,0,0],[0,0,0]];
+            mathematicalPoints.forEach(p => {
+                cov[0][0] += p.x*p.x; cov[0][1] += p.x*p.y; cov[0][2] += p.x*p.z;
+                cov[1][0] += p.y*p.x; cov[1][1] += p.y*p.y; cov[1][2] += p.y*p.z;
+                cov[2][0] += p.z*p.x; cov[2][1] += p.z*p.y; cov[2][2] += p.z*p.z;
+            });
+            for(let i=0; i<3; i++) for(let j=0; j<3; j++) cov[i][j] /= (pointCount - 1);
+
+            // B. Jacobi Eigenvalue Algorithm
+            principalComponents = computeJacobi(cov);
+
+            // C. Draw Eigenvectors (Scaled by square root of eigenvalue for visual magnitude)
+            const colors = [0xe96868, 0x2ca02c, 0xff7f0e]; // Red, Green, Orange
+            
+            principalComponents.forEach((pc, i) => {
+                // Vector magnitude scaled by standard deviation (sqrt of variance/eigenvalue)
+                const length = Math.max(Math.sqrt(pc.val) * 2, 0.5); 
+                const arrow = new THREE.ArrowHelper(pc.vec, new THREE.Vector3(0,0,0), length, colors[i], 0.3, 0.2);
+                scene.add(arrow);
+                arrows.push(arrow);
+                
+                // Pop animation for arrows
+                arrow.scale.set(0.01, 0.01, 0.01);
+                gsap.to(arrow.scale, {x: 1, y: 1, z: 1, duration: 1, delay: i * 0.3, ease: "back.out(1.5)"});
+            });
+
+            document.getElementById('btn-eigen').disabled = true;
+            document.getElementById('btn-pcs').disabled = false;
+        }
+
+        // --- 5. PCA STEP 3: HIGHLIGHT PCs ---
+        function highlightPCs() {
+            // Fade out the 3rd eigenvector (lowest variance)
+            if (arrows[2]) {
+                arrows[2].setColor(new THREE.Color(0xcccccc)); // Turn gray
+            }
+            document.getElementById('btn-pcs').disabled = true;
+            document.getElementById('btn-project').disabled = false;
+        }
+
+        // --- 6. PCA STEP 4: PROJECT DATA ---
+        function projectData() {
+            const pc1 = principalComponents[0].vec;
+            const pc2 = principalComponents[1].vec;
+
+            points.forEach((p, index) => {
+                const vec = mathematicalPoints[index];
+                
+                // Projection formula: P_proj = (vec • pc1)*pc1 + (vec • pc2)*pc2
+                const dot1 = vec.dot(pc1);
+                const dot2 = vec.dot(pc2);
+
+                const projX = dot1 * pc1.x + dot2 * pc2.x;
+                const projY = dot1 * pc1.y + dot2 * pc2.y;
+                const projZ = dot1 * pc1.z + dot2 * pc2.z;
+
+                gsap.to(p.position, {
+                    x: projX,
+                    y: projY,
+                    z: projZ,
+                    duration: 2,
+                    ease: "power3.inOut"
+                });
+            });
+
+            document.getElementById('btn-project').disabled = true;
+        }
+
+        // --- MATH UTILITY: JACOBI ALGORITHM ---
+        function computeJacobi(A) {
+            let V = [[1,0,0], [0,1,0], [0,0,1]];
+            let d = [A[0][0], A[1][1], A[2][2]];
+            
+            for(let iter=0; iter<50; iter++) {
+                let maxVal = 0; let p = 0; let q = 1;
+                for(let i=0; i<2; i++) {
+                    for(let j=i+1; j<3; j++) {
+                        if(Math.abs(A[i][j]) > maxVal) {
+                            maxVal = Math.abs(A[i][j]); p = i; q = j;
+                        }
+                    }
+                }
+                if(maxVal < 1e-9) break;
+
+                let theta = (d[q] - d[p]) / (2.0 * A[p][q]);
+                let t = Math.sign(theta) / (Math.abs(theta) + Math.sqrt(theta*theta + 1.0));
+                if (theta === 0) t = 1;
+                
+                let c = 1.0 / Math.sqrt(t*t + 1.0);
+                let s = c * t;
+
+                let app = d[p] - t * A[p][q];
+                let aqq = d[q] + t * A[p][q];
+                A[p][q] = 0;
+                
+                for(let i=0; i<3; i++) {
+                    if(i !== p && i !== q) {
+                        let api = A[p][i]; let aqi = A[q][i];
+                        A[p][i] = A[i][p] = c * api - s * aqi;
+                        A[q][i] = A[i][q] = s * api + c * aqi;
+                    }
+                }
+                d[p] = app; d[q] = aqq;
+
+                for(let i=0; i<3; i++) {
+                    let vip = V[i][p]; let viq = V[i][q];
+                    V[i][p] = c * vip - s * viq;
+                    V[i][q] = s * vip + c * viq;
+                }
+            }
+            
+            let results = [
+                { val: d[0], vec: new THREE.Vector3(V[0][0], V[1][0], V[2][0]).normalize() },
+                { val: d[1], vec: new THREE.Vector3(V[0][1], V[1][1], V[2][1]).normalize() },
+                { val: d[2], vec: new THREE.Vector3(V[0][2], V[1][2], V[2][2]).normalize() }
+            ];
+            
+            // Sort by eigenvalues descending
+            results.sort((a,b) => b.val - a.val);
+            return results;
+        }
+
+        // --- RENDER LOOP ---
+        // Allow user to rotate camera with mouse
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+
+        document.addEventListener('mousedown', () => isDragging = true);
+        document.addEventListener('mouseup', () => isDragging = false);
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaMove = { x: e.offsetX - previousMousePosition.x, y: e.offsetY - previousMousePosition.y };
+                pointGroup.rotation.y += deltaMove.x * 0.01;
+                pointGroup.rotation.x += deltaMove.y * 0.01;
+            }
+            previousMousePosition = { x: e.offsetX, y: e.offsetY };
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (!isDragging) {
+                pointGroup.rotation.y += 0.001; // Auto-rotate slowly
+            }
+            renderer.render(scene, camera);
+        }
+
+        generateData();
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
