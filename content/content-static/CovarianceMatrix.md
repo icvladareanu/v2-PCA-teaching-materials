@@ -1,5 +1,5 @@
 (covariance-matrix)=
-# The Covariance Matrix  
+# 2.4. The Covariance Matrix  
 
 
 The *covariance matrix* describes how every pair of features in a dataset varies together.

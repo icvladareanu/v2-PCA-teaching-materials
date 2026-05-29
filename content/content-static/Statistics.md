@@ -1,4 +1,4 @@
-# Statistical Foundations
+# 2.3. Statistical Foundations
 
 
 (mean)=
