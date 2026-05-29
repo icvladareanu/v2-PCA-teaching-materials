@@ -1,0 +1,39 @@
+version: 1
+project:
+  toc:
+    - file: content/Index.md
+    - title: Instructional Conditions 
+      children:
+        - title: Static 
+          children:
+            - file: content/content-static/Introduction.md
+            - file: content/content-static/MathematicalFoundations.md
+              children:
+                - title: Linear Algebra
+                  children:
+                    - file: content/content-static/Vectors.ipynb
+                    - file: content/content-static/Matrices.ipynb
+                - title: Statistics
+                  children:
+                    - file: content/content-static/Statistics.md
+                    - file: content/content-static/CovarianceMatrix.md
+            - file: content/content-static/PCA.md
+            - file: content/content-static/Applications.md
+            - file: content/content-static/Conclusion.md
+        - title: Interactive
+          children:
+              - file: content/content-int/Introduction.md
+              - file: content/content-int/MathematicalFoundations.md
+                children:
+                  - title: Linear Algebra
+                    children:
+                      - file: content/content-int/Vectors.ipynb
+                      - file: content/content-int/Matrices.ipynb
+                  - title: Statistics
+                    children:
+                      - file: content/content-int/Statistics.md
+                      - file: content/content-int/CovarianceMatrix.md
+              - file: content/content-int/PCA.md
+              - file: content/content-int/Applications.md
+              - file: content/content-int/Conclusion.md
+    
