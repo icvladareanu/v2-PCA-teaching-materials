@@ -69,24 +69,9 @@ In Machine Learning, the number of features an object has dictates the number of
 
 To build a strong intuition for techniques like PCA, we must translate how we view data from a flat list of numbers into a geometric space. Every time you add a new feature to your dataset, you are adding a new perpendicular axis to your graph:
 
-- **1 feature (1D):** The object is a 1D vector, 
-    \begin{bmatrix}
-    x_1
-    \end{bmatrix}.
-    Geometrically, this is a single point on a number line, where the value of $x_1$ dictates its exact position.
-- **2 features (2D):** The object is a 2D vector, 
-    \begin{bmatrix} 
-    x_1 \\ 
-    x_2 
-    \end{bmatrix}.
-    Geometrically, this represents a point in a standard XY coordinate system. The first feature value ($x_1$) provides the coordinate on the horizontal axis, and the second feature value ($x_2$) provides the coordinate on the vertical axis.
-- **3 features (3D):** The object is a 3D vector, 
-    \begin{bmatrix} 
-    x_1 \\ 
-    x_2 \\ 
-    x_3 
-    \end{bmatrix}.
-    The point now exists in a 3D volume, with three distinct coordinates dictating its position across the XYZ coordinate system.
+- **1 feature (1D):** The object is a 1D vector. Geometrically, this is a single point on a number line, where the value of $x_1$ dictates its exact position.
+- **2 features (2D):** The object is a 2D vector. Geometrically, this represents a point in a standard XY coordinate system. The first feature value ($x_1$) provides the coordinate on the horizontal axis, and the second feature value ($x_2$) provides the coordinate on the vertical axis.
+- **3 features (3D):** The object is a 3D vector. The point now exists in a 3D volume, with three distinct coordinates dictating its position across the XYZ coordinate system.
 - **$n$ features ($n$-D):** The object is an $n$-dimensional vector. While we cannot easily visualize more than three dimensions, the mathematical logic remains identical: the point is located in an abstract $n$-dimensional space, defined by $n$ specific numerical coordinates.
 
 ```{figure} figures/dimensionality.*
