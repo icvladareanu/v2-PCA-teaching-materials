@@ -1,4 +1,4 @@
-# Mathematical Foundations
+# 2. Mathematical Foundations
 
 To understand how PCA works, we first need to review a few key mathematical concepts. This theory section highlights concepts from linear algebra and statistics that form the building blocks for describing and manipulating data.
 

@@ -3,7 +3,7 @@ abstract: |
     Principal Component Analysis (PCA) is a widely used dimensionality reduction technique used in Machine Learning and Statistics. It is an unsupervised method that helps reduce the complexity of data by transforming it into a lower-dimensional space, making patterns and relationships within the data easier to understand, while preserving the most relevant information.
 ---
 
-# Introduction
+# 1. Introduction
 
 **Machine Learning (ML)** is a field of study that focuses on designing algorithms that learn patterns directly from data. Rather than relying on explicitly programmed rules, machine learning systems use data to automatically identify relationships, detect structure, and make predictions or decisions.
 
