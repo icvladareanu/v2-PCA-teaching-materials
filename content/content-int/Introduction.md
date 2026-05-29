@@ -57,7 +57,7 @@ Each row represents one house (a specific object or data point), and each column
 :icon: true
 Notice how the two examples above use different conventions for vector notation. This is a common difference between mathematics and Machine Learning:
 
-- **Linear Algebra (Column Convention):** In mathematical notation, a vector (also the single house **feature** vector) is conventionally written as a *column*. If an object has $d$ features, it is represented as a $d \times 1$ column vector.
+- **Linear Algebra (Column Convention):** In mathematical notation, a vector (also the house **feature** vector from the example above) is conventionally written as a *column*. If an object has $d$ features, it is represented as a $d \times 1$ column vector.
 - **Machine Learning (Row Convention):** When we combine multiple objects into a single dataset matrix, the standard convention is to represent each object/vector as a *row*. Therefore, an $N \times d$ dataset matrix contains $N$ objects (rows) and $d$ features (columns).
 
 To bridge these conventions mathematically, an object $\mathbf{x}$ represented as a column vector is transposed ($\mathbf{x}^\top$) when it is inserted as a row into the dataset matrix.
@@ -69,16 +69,31 @@ In Machine Learning, the number of features an object has dictates the number of
 
 To build a strong intuition for techniques like PCA, we must translate how we view data from a flat list of numbers into a geometric space. Every time you add a new feature to your dataset, you are adding a new perpendicular axis to your graph:
 
-- **1 feature (1D):** The object is a 1D vector, $x = [x_1]$. Geometrically, this is a single point on a number line, where the value of $x_1$ dictates its exact position.
-- **2 features (2D):** The object is a 2D vector, $\mathbf{x} = [x_1, x_2]^\top$. Geometrically, this represents a point in a standard XY coordinate system. The first feature value ($x_1$) provides the coordinate on the horizontal axis, and the second feature value ($x_2$) provides the coordinate on the vertical axis.
-- **3 features (3D):** The object is a 3D vector, $\mathbf{x} = [x_1, x_2, x_3]^\top$. The point now exists in a 3D volume, with three distinct coordinates dictating its position across the XYZ coordinate system.
+- **1 feature (1D):** The object is a 1D vector, 
+    \begin{bmatrix}
+    x_1
+    \end{bmatrix}.
+    Geometrically, this is a single point on a number line, where the value of $x_1$ dictates its exact position.
+- **2 features (2D):** The object is a 2D vector, 
+    \begin{bmatrix} 
+    x_1 \\ 
+    x_2 
+    \end{bmatrix}.
+    Geometrically, this represents a point in a standard XY coordinate system. The first feature value ($x_1$) provides the coordinate on the horizontal axis, and the second feature value ($x_2$) provides the coordinate on the vertical axis.
+- **3 features (3D):** The object is a 3D vector, 
+    \begin{bmatrix} 
+    x_1 \\ 
+    x_2 \\ 
+    x_3 
+    \end{bmatrix}.
+    The point now exists in a 3D volume, with three distinct coordinates dictating its position across the XYZ coordinate system.
 - **$n$ features ($n$-D):** The object is an $n$-dimensional vector. While we cannot easily visualize more than three dimensions, the mathematical logic remains identical: the point is located in an abstract $n$-dimensional space, defined by $n$ specific numerical coordinates.
 
 ```{figure} figures/dimensionality.*
 :label: fig-dimensionality
 :alt: A visual representation of how data sparsity increases from 1D (split into 4 regions) to 2D (split into 16 regions) to 3D (split into 64 regions).
 
-A visual representation of how data sparsity increases from 1D (split into 4 regions) to 2D (split into 16 regions) to 3D (split into 64 regions). This illustrates how adding features (dimensions) exponentially increases the available space, causing the number of data points in one region to become increasingly sparse.
+*Figure 1.* A visual representation of how data sparsity increases from 1D (split into 4 regions) to 2D (split into 16 regions) to 3D (split into 64 regions). This illustrates how adding features (dimensions) exponentially increases the available space, causing the number of data points in one region to become increasingly sparse.   
 Source: @deepai2019
 ```
 
@@ -86,7 +101,7 @@ Source: @deepai2019
 ### The Curse of Dimensionality
 The *curse of dimensionality* refers to the collection of problems that arise when working with high-dimensional data, when data becomes increasingly sparse as dimensions increase.
 
-To intuitively understand why high dimensions hurt machine learning models, consider the relationship between dimensions, available space, and data sparsity shown in Figure 1.
+To intuitively understand why high dimensions hurt machine learning models, consider the relationship between dimensions, available space, and data sparsity shown in *Figure 1*.
 
 Imagine we have a fixed set of 20 data points (represented by the red and green dots). Let's watch what happens to the exact same data as we add features:
 
