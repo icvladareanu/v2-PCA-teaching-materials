@@ -14,9 +14,13 @@ Many problems in Machine Learning involve huge {ref}`datasets <datasets>` - obje
 :open: false
 :icon: true
 
-Imagine you are analyzing a dataset of houses. The data has many features, including "square meters" and "number of bedrooms." Naturally, houses with high square footage also tend to have a higher number of bedrooms. 
+Imagine you're analyzing a dataset of houses with features such as square meters and number of bedrooms. These two features are often strongly related: larger houses tend to have more bedrooms, while smaller houses tend to have fewer. As a result, they contain a lot of the same information.
 
-In other words, these two features are highly correlated. It is possible to reduce the dimensions of that dataset by removing these redundancies, combining them into a single feature that captures the overall "size" of the house without losing the core information.
+When two features move together in this way, they are said to have a **high covariance**. Keeping both features may not provide much additional insight because they are largely describing the same underlying characteristic of the house: its overall size.
+
+PCA solves this by looking at how the data varies. Covariance tells us which features move together and therefore contain redundant information. PCA instead focuses on variance, because variance measures how much the data differs across observations. A direction with high variance separates data points well and captures meaningful differences between them.
+
+In the house example, PCA may combine both features (square meters and number of bedrooms) into a new variable that represents the overall size of the house. It then creates a new feature, called a principal component, which is a weighted combination of square meters and number of bedrooms. This way, PCA can capture most of the information contained in the original variables while removing their overlap.
 ```
 
 
