@@ -1,4 +1,4 @@
-# 3. PCA Step-by-Step   
+# 3. PCA: Step-by-Step   
 
 
 Finally, we reach the key point in our lesson that everything has been building up to: the PCA algorithm!

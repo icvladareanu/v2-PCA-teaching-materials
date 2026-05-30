@@ -1,4 +1,4 @@
-# 4. PCA Applied  
+# 4. PCA: Worked Example 
 
  
 Let’s apply the PCA algorithm to a simple worked example.

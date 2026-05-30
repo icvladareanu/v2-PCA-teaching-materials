@@ -19,6 +19,7 @@ project:
                     - file: content/content-static/CovarianceMatrix.md
             - file: content/content-static/PCA.md
             - file: content/content-static/Applications.md
+            - file: content/content-static/ScenariosLimitations.md
             - file: content/content-static/Conclusion.md
         - title: Interactive
           children:
@@ -35,5 +36,6 @@ project:
                       - file: content/content-int/CovarianceMatrix.md
               - file: content/content-int/PCA.md
               - file: content/content-int/Applications.md
+              - file: content/content-int/ScenariosLimitations.md
               - file: content/content-int/Conclusion.md
     
