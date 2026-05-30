@@ -113,7 +113,7 @@ Principal Component Analysis (PCA) achieves this by constructing a smaller set o
 :label: fig-pca
 :alt: Figure of PCA
 
-Dimensionality reduction with PCA (provided here for intuition; the method is explained in detail in later chapters).
+*Figure 2.* Dimensionality reduction with PCA (provided here for intuition; the method is explained in detail in later chapters).
 
 Source: @tiwari2025
 ```

@@ -70,7 +70,7 @@ $$
 :label: fig-variance
 :alt: Variance of projected data.
 
-Figure 1: The effect of projection axis orientation on data variance.  
+*Figure 5.* The effect of projection axis orientation on data variance.  
  The left panel shows datapoints being projected onto an axis that captures high variance, as the points remain widely separated along the new axis. The right panel shows datapoints being projected onto an axis that captures low variance, as the new points collapse close to each other and lose the distinct differences between them.   
 Source: @courseML2025
 ```
@@ -134,5 +134,6 @@ $$
 \mathrm{cov}(x,y) = \frac{2 + 0 + 2}{2} = 2
 $$
 ```
+
 
 

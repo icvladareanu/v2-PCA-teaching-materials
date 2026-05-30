@@ -43,6 +43,15 @@ The covariance matrix summarizes the structure of a dataset:
 
 The diagonal shows how much each feature varies individually, while the off-diagonal terms show how features relate to each other.
 
+
+```{figure} figures/covariance.*
+:label: fig-covariance
+:alt: Covariance of data.
+
+*Figure 5.* Three scatter plots demonstrating positive, near-zero, and negative covariance patterns.
+Positive covariance indicates a direct linear relationship (sloping upward), negative covariance indicates an inverse linear relationship (sloping downward), and near-zero covariance implies the variables do not share a clear linear dependency.
+Source: @mathmonks2025
+```
 ---
 
 ## Key take-away
