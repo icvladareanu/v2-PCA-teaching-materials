@@ -60,11 +60,11 @@ The flock forms a cloud of points in space. This has a specific shape: it may be
 
 The covariance matrix captures this structure feature by feature:
 - The **diagonal entries** describe how spread out the flock is along each individual feature.  
-  These are the **feature variances**, and they tell you how much variation exists in each direction (for example, how wide the flock is horizontally or vertically).
+    These are the **feature variances**, and they tell you how much variation exists in each direction (for example, how wide the flock is horizontally or vertically).
 - The **off-diagonal entries** describe how pairs of features vary together.  
-  These are the **covariances between features**. If birds that are further to the right also tend to be higher up, then the horizontal and vertical features are linked.   
+    These are the **covariances between features**. If birds that are further to the right also tend to be higher up, then the horizontal and vertical features are linked.   
 
-  This is where **redundancy between features** appears: if one feature already gives you information about another, then both are partially describing the same underlying structure of the flock instead of contributing independent information.  
+    This is where **redundancy between features** appears: if one feature already gives you information about another, then both are partially describing the same underlying structure of the flock instead of contributing independent information.  
 
 From this perspective, the covariance matrix is not just a table of numbers. It is a **map of both the geometry and the redundancy of the data**. It tells us:
 - how the flock is stretched along each feature (variance), and  

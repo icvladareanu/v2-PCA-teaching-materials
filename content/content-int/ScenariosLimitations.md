@@ -1,4 +1,4 @@
-# 5. PCA: Applications and Limitations
+# 5. PCA: Applications and Limitations  
 
 PCA is not just a theoretical tool for reducing dimensions - it is widely used in real-world systems where data is high-dimensional, noisy, or difficult to visualize. However, it also comes with important assumptions and limitations that determine when it works well and when it fails.
 
@@ -45,12 +45,12 @@ By applying PCA to seasonal race telemetry, researchers can filter through the n
 
 - **Simplifying Predictive Models**: By replacing hundreds of correlated variables with a small set of principal components, PCA creates a more compact representation of the data. These components can then be used as inputs to Machine Learning models that predict race performance, optimize vehicle setup, or identify unusual behavior in the car.
 
-## Limitations of PCA
+## Limitations of PCA  
 
 While PCA is a powerful and widely used technique for dimensionality reduction, it is fundamentally constrained by several mathematical assumptions. Understanding these limitations is essential when determining whether PCA is an appropriate choice for a particular dataset.
 
 ### The Assumption of Linearity
-PCA is inherently a linear method. It assumes that the most important structure in the data can be captured through linear combinations of the original features. However, many real-world datasets contain complex nonlinear patterns. When the data lies on a complex nonlinear manifold — such as a sphere, ring, spiral, or other curved structure — PCA cannot accurately model these relationships. Instead, it projects the data onto a lower-dimensional linear space, potentially destroying the meaningful, natural geometry of the dataset and making important patterns harder to identify.
+PCA is inherently a linear method. It assumes that the most important structure in the data can be captured through linear combinations of the original features. However, many real-world datasets contain complex nonlinear patterns. When the data lies on a complex nonlinear manifold - such as a sphere, ring, spiral, or other curved structure - PCA cannot accurately model these relationships. Instead, it projects the data onto a lower-dimensional linear space, potentially destroying the meaningful, natural geometry of the dataset and making important patterns harder to identify.
 
 
 ### Sensitivity to Feature Scale
