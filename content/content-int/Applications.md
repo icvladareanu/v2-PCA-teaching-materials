@@ -124,11 +124,12 @@ $$
 \lambda_2 = \frac{2}{3} \approx 0.67
 $$
 
-Next, we find the eigenvectors by solving
-
+Now that we have the eigenvalues, we determine the directions (eigenvectors). For each eigenvalue λ, we substitute it back into 
 $$
 (\mathbf{C} - \lambda \mathbf{I}) \mathbf{v} = 0.
 $$
+and solve the resulting homogeneous system to find the non-zero vectors v that satisfy this condition.
+
 
 For $\lambda_1 = \frac{8}{3}$:
 
