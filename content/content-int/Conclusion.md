@@ -4,4 +4,4 @@ In this tutorial, you have explored the step-by-step mechanics of Principal Comp
 
 You now possess a solid foundation for understanding how this powerful dimensionality reduction technique removes data redundancy while preserving the essential patterns hidden within.
 
-This completes the learning phase. Congratulations! Please refer to the researcher for further instructions.
+This completes the tutorial. Congratulations! 
