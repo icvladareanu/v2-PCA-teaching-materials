@@ -48,9 +48,10 @@ The diagonal shows how much each feature varies individually, while the off-diag
 :label: fig-covariance
 :alt: Covariance of data.
 
-*Figure 6.* Three scatter plots demonstrating positive, near-zero, and negative covariance patterns.
-Positive covariance indicates a direct linear relationship (sloping upward), negative covariance indicates an inverse linear relationship (sloping downward), and near-zero covariance implies the variables do not share a clear linear dependency.
-Source: @mathmonks2025
+*Figure 6.* Three scatter plots demonstrating positive, near-zero, and negative covariance patterns. 
+In a two-variable system, these patterns describe the behavior of the off-diagonal entries $C_{12} = \text{cov}(x_1, x_2)$ and $C_{21} = \text{cov}(x_2, x_1)$ in the covariance matrix. Positive covariance indicates a direct linear relationship (sloping upward), negative covariance indicates an inverse linear relationship (sloping downward), and near-zero covariance implies the features do not share a clear linear dependency.   
+Adapted from source: @mathmonks2025
+```
 ```
 
 
