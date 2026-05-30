@@ -70,8 +70,23 @@ $$
 :label: fig-variance
 :alt: Variance of projected data.
 
-Large vs. small variance of projected datapoints.
+Figure 1: The effect of projection axis orientation on data variance. The left panel shows datapoints being projected onto an axis that captures high variance, as the points remain widely separated along the new axis. The right panel shows datapoints being projected onto an axis that captures low variance, as the new points collapse close to each other and lose the distinct differences between them.   
 Source: @courseML2025
+```
+
+```{tip} How is this related to PCA?
+:class: dropdown
+:open: false
+
+1. Left Diagram: "Projected data has largest variance"
+- What is happening: The red line is aligned with the primary direction of the data's spread.
+- The Result: When the points are projected perpendicularly onto this line, they land far apart from each other. The projected data retains a high variance (spread).
+- Relation to PCA: PCA is fundamentally a dimensionality reduction method; it aims to compress data into fewer dimensions while keeping the most critical structural information intact. To do this, PCA relies on the mathematical principle that variance represents information - PCA searches for the exact axis that maximizes the data spread. 
+
+2. Right Diagram: "Projected data has small variance"
+- What is happening: The red line is oriented perpendicular to the main spread of the data.
+- The Result: When the points are projected onto this line, they collapse closely together, projecting into a tight cluster. The projected data has a small variance.
+- Relation to PCA: Because the points overlap heavily on this axis, we lose the ability to distinguish the individual samples from one another. Geometrically, projecting data this way destroys its original shape. For PCA, directions that capture minimal variance correspond to directions that carry the least amount of useful information and are typically discards them - which is exactly how PCA successfully compresses data without losing its meaning.
 ```
 
 
