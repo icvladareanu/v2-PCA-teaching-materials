@@ -36,8 +36,15 @@ $$ \mathbf{X}_{\text{centered}} = \mathbf{X} - \mu $$
 *Here, $\mathbf{X}$ is the dataset matrix and $\mu$ is the mean vector of the features.*
 
 --- 
-*Use the widget below to generate a random dataset, then center it.*   
-*Experiment with different datasets to understand the effect of centering.*
+```{hint} Interactive Exploration: the Widget Explanation
+:class: dropdown
+:open: true
+:icon: true
+Use this widget to understand the effect of centering..
+ 
+ **Generate Data**: Creates a random 3D dataset. You can adjust the number of points using the input field.  
+ 1. **Center Data**: Shows the visual effect of performing mean centering.
+```
 
 ```{anywidget} assets/pca-step1.mjs
 :css: assets/pca-widget-style.css
@@ -70,8 +77,16 @@ Eigenvectors indicate the directions of maximum variance in the data (the Princi
 
 
 --- 
-*Use the widget below to generate a dataset, center it, then find its eigenvectors.*   
-*Observe how the first eigenvector points to the direction with the most variance in the data, and the second eigenvector points to the direction with the second most variance.*
+```{hint} Interactive Exploration: the Widget Explanation
+:class: dropdown
+:open: true
+:icon: true
+Using the widget, observe how the first eigenvector (red) points to the direction with the most variance in the data, and the second eigenvector (green) points to the direction with the second most variance. 
+ 
+ **Generate Data**: Creates a random 3D dataset. You can adjust the number of points using the input field.  
+ 1. **Center Data**: Shows the visual effect of performing mean centering.
+ 2. **Find Eigenvectors**: Plots the eigenvectors of the dataset.
+```
 
 ```{anywidget} assets/pca-step2.mjs
 :css: assets/pca-widget-style.css
@@ -99,9 +114,18 @@ A Principal Component is a new axis created from a linear combination of the ori
 ```
 
 --- 
-*Use the widget below to generate a random dataset, center it, and find its eigenvectors. Find the first two Principal Components of the dataset.*  
-*The first Principal Component (red PC1) describes the direction where the data is most spread out, i.e. has the maximum variance.*  
-*The second Principal Component (green PC2) describes the direction of the next highest variance in the data, and is orthogonal (perpendicular) to PC1.*  
+```{hint} Interactive Exploration: the Widget Explanation
+:class: dropdown
+:open: true
+:icon: true
+Using the widget, find the first two Principal Components of the dataset.   
+Observe how the first Principal Component (red PC1) describes the direction where the data is most spread out, i.e. has the maximum variance. The second Principal Component (green PC2) describes the direction of the next highest variance in the data, and is orthogonal (perpendicular) to PC1.
+ 
+ **Generate Data**: Creates a random 3D dataset. You can adjust the number of points using the input field.  
+ 1. **Center Data**: Shows the visual effect of performing mean centering.
+ 2. **Find Eigenvectors**: Plots the eigenvectors of the dataset.
+ 3. **Find PCs**: Plots PC1 and PC2.
+```
 
 ```{anywidget} assets/pca-step3.mjs
 :css: assets/pca-widget-style.css
@@ -123,10 +147,19 @@ $$ \mathbf{X}_{\text{pca}} = \mathbf{X}_{\text{centered}} \mathbf{W} $$
 Geometrically, this matrix multiplication effectively **projects the original data points onto the newly established orthogonal axes**.
 
 --- 
-*Use the widget below to generate a random dataset, center it, find its eigenvectors, then highlight the first two PCs.*  
-*Project the original 3D dataset into its 2D equivalent. Observe how the data is projected from 3D (blue sphere in the left graph) to 2D (green plane in the right graph).*   
-*Experiment with different datasets to observe the full effect of the PCA algorithm.*   
-
+```{hint} Interactive Exploration: the Widget Explanation
+:class: dropdown
+:open: true
+:icon: true
+Use the widget below to go through the full process of PCA.  
+Go step by step, working up to projecting the original 3D dataset into its 2D equivalent. Observe how the data is projected from 3D (blue sphere in the left graph) to 2D (green plane in the right graph).
+ 
+ **Generate Data**: Creates a random 3D dataset. You can adjust the number of points using the input field.  
+ 1. **Center Data**: Shows the visual effect of performing mean centering.
+ 2. **Find Eigenvectors**: Plots the eigenvectors of the dataset.
+ 3. **Find PCs**: Plots PC1 and PC2.
+ 4. **Project Data**: Reduces the dimensionality from 3D to 2D.
+```
 ```{anywidget} assets/pca-step4.mjs
 :css: assets/pca-widget-style.css
 {
