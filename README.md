@@ -7,12 +7,12 @@ numbering:
 
 # 🎓 Additional information
 
-This version of the starterkit has been adapted as part of a Bachelor thesis Research Project. It serves as an educational resource for first-year Computer Science students. It was designed as an introduction to the concept of PCA and assumes no prior knowledge of Machine Learning.
+This version of the starterkit has been adapted and serves as an educational resource for first-year Computer Science students. It was designed as an introduction to the concept of PCA and assumes no prior knowledge of Machine Learning.
 The goal of this adaptation is to make foundational concepts in Machine Learning more accessible through structured explanations and interactive Jupyter Book content.
 
 ## 📦 Starterkit README
 
-This is the starterkit for open publishing with Jupyter Book. It provides a skeleton with basic settings to have a head start with your thesis / project.
+This is the starterkit for open publishing with Jupyter Book. It provides a skeleton with basic settings.
 
 It includes:
 - a github deploy file taking care of deploying the website and building a pdf
