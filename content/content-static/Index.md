@@ -17,9 +17,7 @@ no-update-date: true
 ## Teaching Principal Component Analysis Through Multiple Modalities - Instructional Materials
 
 
-This tutorial was developed as part of a Bachelor’s thesis.
-
-It serves as an open educational resource aimed at introducing first-year Computer Science students to the fundamental concepts behind Principal Component Analysis (PCA). The material is designed under the assumption that students have no prior experience with Machine Learning.
+This tutorial  serves as an open educational resource aimed at introducing first-year Computer Science students to the fundamental concepts behind Principal Component Analysis (PCA). The material is designed under the assumption that students have no prior experience with Machine Learning.
 
 
 This Jupyter Book template was originally created by:  
