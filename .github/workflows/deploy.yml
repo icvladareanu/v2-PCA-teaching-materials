@@ -34,7 +34,7 @@ jobs:
       - name: Checkout Typst template fonts
         uses: actions/checkout@v4
         with:
-          repository: anonymous
+          repository: TUD-JB-OS/typst_template
           ref: main
           path: typst_template
 
