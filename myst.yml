@@ -5,7 +5,7 @@ project:
   # description:
   keywords: [Principal Component Analysis, PCA, Machine Learning, ML, Education, Multimodal, Modalities, Teaching, Learning, Computer Science, CS]
 
-  github: https://cristianavladareanu26.github.io/v2-PCA-teaching-materials/
+  github: anonymous
   thumbnail: style/thumbnail.jpg
   numbering: false
   # specify authors in authors.yml file
@@ -47,9 +47,6 @@ site:
   # styling options with logo's and custom css
   options:
     favicon:      style/favicon.ico
-    logo:         style/tudelft.png
-    logo_dark:    style/tudelft-dark.png
-    logo_url:     https://jboss.tudelft.nl
     hide_authors: true
     style:        style/custom.css
   
