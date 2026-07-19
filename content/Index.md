@@ -26,8 +26,6 @@ It serves as an open educational resource aimed at introducing first-year Comput
 This Jupyter Book template was originally created by:  
 *Freek Pols*
 
-![](content-int/figures/tud.jpg)
-
 +++
 
 ## About this material
