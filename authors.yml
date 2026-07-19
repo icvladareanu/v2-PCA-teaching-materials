@@ -3,20 +3,19 @@ project:
   
   authors:
     - id: student
-      name: Cristiana Vlădăreanu
+      name: anonymous
       affiliations:
-        - tud
-
+        - anonymous
   contributors:
     - id: responsible-professor
-      name: Gosia Migut
+      name: anonymous
       affiliations:
-        - tud
+        - anonymous
     - id: supervisor
-      name: Ilinca Rențea
+      name: anonymous
       affiliations:
-        - tud
+        - anonymous
    
   affiliations:
-    - id: tud
-      institution: Delft University of Technology
+    - id: anonymous
+      institution: anonymous
