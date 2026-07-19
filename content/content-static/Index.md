@@ -13,12 +13,11 @@ numbering:
 no-update-date: true
 ---
 
-+++ { "kind": "split-image" }
 
 ## Teaching Principal Component Analysis Through Multiple Modalities - Instructional Materials
 
 
-This tutorial was developed as part of a Bachelor’s thesis conducted within the CSE3000 Research Project course at the Faculty of Electrical Engineering, Mathematics and Computer Science (EEMCS), Delft University of Technology.
+This tutorial was developed as part of a Bachelor’s thesis.
 
 It serves as an open educational resource aimed at introducing first-year Computer Science students to the fundamental concepts behind Principal Component Analysis (PCA). The material is designed under the assumption that students have no prior experience with Machine Learning.
 
@@ -26,9 +25,6 @@ It serves as an open educational resource aimed at introducing first-year Comput
 This Jupyter Book template was originally created by:  
 *Freek Pols*
 
-![](figures/tud.jpg)
-
-+++
 
 ## About this material
 
@@ -44,10 +40,10 @@ No prior knowledge of Machine Learning or advanced mathematics is required.
 
 For questions, feedback, or suggestions regarding this material, feel free to reach out:
 
-- **Author:** Cristiana Vlădăreanu
-- **Email:** i.vladareanu@student.tudelft.nl  
-- **Responsible Professor:** Gosia Migut
-- **Supervisor:** Ilinca Rențea
-- **Institution:** TU Delft - EEMCS - Computer Science and Engineering
+- **Author:** Anonymous
+- **Email:** Anonymous
+- **Responsible Professor:** Anonymous
+- **Supervisor:** Anonymous
+- **Institution:** Anonymous
 
 ---
