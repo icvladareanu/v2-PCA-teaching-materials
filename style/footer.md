@@ -14,7 +14,6 @@ no-update-date: true
 :align: left
 ```
 
-Want your own project? Visit our [starterkit](https://github.com/TUD-JB-OS/starterkit)
 ::::
 
 
@@ -33,7 +32,6 @@ Want your own project? Visit our [starterkit](https://github.com/TUD-JB-OS/start
 - [Manual](https://tud-jb-os.github.io/book/)
 - [Help](mailto:c.f.j.pols@tudelft.nl)
 - [Jupyter](https://jupyterbook.org/)
-- [TU Delft](https://tudelft.nl)
 :::
 
 :::{div}
@@ -43,7 +41,6 @@ Want your own project? Visit our [starterkit](https://github.com/TUD-JB-OS/start
 
 :::{div}
 
-![](tudelft-dark.png)
 :::
 
 ::::
