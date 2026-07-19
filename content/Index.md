@@ -13,8 +13,6 @@ numbering:
 no-update-date: true
 ---
 
-+++ { "kind": "split-image" }
-
 ## Teaching Principal Component Analysis Through Multiple Modalities - Instructional Materials
 
 
@@ -26,7 +24,6 @@ It serves as an open educational resource aimed at introducing first-year Comput
 This Jupyter Book template was originally created by:  
 *Freek Pols*
 
-+++
 
 ## About this material
 
